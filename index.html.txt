@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HBD To You 💖</title>
+    <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary-pink: #ffafcc; --bg-color: #fff0f3; --text-color: #fb6f92; }
+        body, html { margin: 0; padding: 0; height: 100%; display: flex; justify-content: center; align-items: center; background-color: var(--bg-color); font-family: 'Kanit', sans-serif; overflow: hidden; }
+        .container { text-align: center; width: 85%; max-width: 500px; padding: 40px; background: white; border-radius: 30px; box-shadow: 0 15px 35px rgba(251, 111, 146, 0.2); }
+        #countdown { font-size: 100px; font-weight: 600; color: var(--text-color); }
+        #wish-content { display: none; }
+        h1 { color: #ff4d6d; font-size: 2rem; margin-bottom: 10px; }
+        .wish-text { font-size: 1.2rem; color: #fb6f92; margin: 12px 0; opacity: 0; transform: translateY(20px); transition: all 0.8s ease; }
+        .show { opacity: 1; transform: translateY(0); }
+        .heart { color: #ff4d6d; font-size: 30px; animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="countdown">3</div>
+        <div id="wish-content">
+            <div class="heart">💖</div>
+            <h1>Happy Birthday!</h1>
+            <div id="messages">
+                <p class="wish-text">ขอให้มีความสุขนะครับ</p>
+                <p class="wish-text">ขอให้สุขภาพร่างกายแข็งแรง</p>
+                <p class="wish-text">ขอให้ร่ำรวยมีเงินมีทองเยอะๆ</p>
+                <p class="wish-text">ขอให้เจอคนดีดีเข้ามาในชีวิตนะครับ</p>
+                <p class="wish-text">สุดท้ายนี้...</p>
+                <p class="wish-text" style="font-weight: bold; color: #ff4d6d; font-size: 1.5rem;">🍻 กินเบียร์ครับมื้อนี้ ห้ามปฏิเสธ!</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        const countdownEl = document.getElementById('countdown');
+        const wishContent = document.getElementById('wish-content');
+        const messages = document.querySelectorAll('.wish-text');
+        let count = 3;
+        const timer = setInterval(() => {
+            count--;
+            if (count > 0) { countdownEl.innerText = count; } 
+            else { clearInterval(timer); startWish(); }
+        }, 1000);
+        function startWish() {
+            countdownEl.style.display = 'none';
+            wishContent.style.display = 'block';
+            messages.forEach((msg, index) => {
+                setTimeout(() => { msg.classList.add('show'); }, (index + 1) * 1500);
+            });
+        }
+    </script>
+</body>
+</html>
